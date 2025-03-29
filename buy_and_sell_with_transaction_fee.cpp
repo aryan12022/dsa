@@ -18,10 +18,7 @@ class Solution {
         front1=cur;
     }
     
-    }
-    
-    
-            
+    }      
             return cur[1];
         }
     };
