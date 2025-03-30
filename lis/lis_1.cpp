@@ -34,20 +34,30 @@ public:
     //             return dp[0][-1+1];
 
  int n=nums.size();
-                vector<int>cur(n+1,0),next(n+1,0);
+    //             vector<int>cur(n+1,0),next(n+1,0);
 
-     for(int i=n-1;i>=0;i--){
-        for(int j=i-1;j>=-1;j--){//j==prev index
-            int nottake=next[j+1];
-            int take=0;
-            if( j==-1 || nums[i]>nums[j]){
-                take=1+next[i+1];
-            }
-            cur[j+1]=max(take,nottake);
+    //  for(int i=n-1;i>=0;i--){
+    //     for(int j=i-1;j>=-1;j--){//j==prev index
+    //         int nottake=next[j+1];
+    //         int take=0;
+    //         if( j==-1 || nums[i]>nums[j]){
+    //             take=1+next[i+1];
+    //         }
+    //         cur[j+1]=max(take,nottake);
+    //     }
+    //     next=cur;
+    // }
+
+    //             return cur[-1+1];
+    vector<int>dp(n,1);
+    int maxi=1;
+    for(int i=0;i<n;i++){
+        for(int prev=0;prev<i;prev++){
+            if(nums[prev]<nums[i])
+            dp[i]=max(dp[i],1+dp[prev]);
         }
-        next=cur;
+        maxi=max(maxi,dp[i]);
     }
-
-                return cur[-1+1];
+return maxi;
     }
 };
